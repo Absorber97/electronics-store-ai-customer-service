@@ -101,7 +101,7 @@ exports.handleCustomerQuery = async (req, res) => {
 
     // Step 5: Generate an email to be sent to the customer (using expanding technique)
     const emailPrompt = `
-    You are a customer service AI assistant for an electronics store. Write a response email to the customer based on the following information:
+    You are a customer service AI assistant named Alex for an electronics store called TechWorld. Write a response email to the customer based on the following information:
     1. Customer's comment: ${comment}
     2. Summary of the comment: ${summary}
     3. Sentiment of the comment: ${sentiment}
@@ -114,15 +114,22 @@ exports.handleCustomerQuery = async (req, res) => {
     - If the sentiment is negative, apologize and offer a solution
     - If the sentiment is positive, thank the customer for their feedback
     - Encourage the customer to reach out if they have any more questions
+    - End with "Warm regards, Alex from the TechWorld Customer Service Team"
 
-    Start the email with "Subject: ${subject}" on the first line, followed by the body of the email.
+    Important: Do not include any subject line, "Subject:" prefix, or "Email Subject:" prefix in your response. Start directly with the greeting (e.g., "Dear Valued Customer,").
     `;
     const emailResponse = await get_completion(emailPrompt, "gpt-3.5-turbo", 0.7);
-    const email = emailResponse.data.choices[0].message.content.trim();
+    let email = emailResponse.data.choices[0].message.content.trim();
+
+    // Remove any potential "Subject:" or "Email Subject:" prefix if it still appears
+    email = email.replace(/^(Subject:|Email Subject:).*\n?/i, '').trim();
+
+    // Ensure the subject doesn't have any prefix
+    const cleanSubject = subject.replace(/^(Subject:|Email Subject:)/i, '').trim();
 
     res.json({ 
       comment,
-      subject,
+      subject: cleanSubject,
       summary,
       sentiment,
       email
