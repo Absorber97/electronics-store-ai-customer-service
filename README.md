@@ -2,6 +2,8 @@
 
 This project implements an AI-powered customer service system for an electronics store using Node.js, Python, Streamlit, and OpenAI's GPT model. It demonstrates a full-stack application with a RESTful API backend and an interactive frontend, showcasing modern web development practices and AI integration.
 
+![Electronic Store AI Customer Service](assets/Electronic Store AI Customer Service.png)
+
 ## Features
 
 - Generate random customer queries about electronics products
