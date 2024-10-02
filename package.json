@@ -5,7 +5,9 @@
   "main": "backend/app.js",
   "scripts": {
     "start": "node backend/app.js",
-    "dev": "nodemon backend/app.js"
+    "dev": "nodemon backend/app.js",
+    "streamlit": "streamlit run frontend/streamlit_app.py",
+    "app": "bash ./run_app.sh"
   },
   "dependencies": {
     "express": "^4.17.1",

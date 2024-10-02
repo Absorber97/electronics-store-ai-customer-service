@@ -1,7 +1,5 @@
 {
-  "TechPro Ultrabook": {
-    "name": "TechPro Ultrabook",
-    "category": "Computers and Laptops",
+  "TP-UB100": {
     "brand": "TechPro",
     "model_number": "TP-UB100",
     "warranty": "1 year",
@@ -10,9 +8,7 @@
     "description": "A sleek and lightweight ultrabook for everyday use.",
     "price": 799.99
   },
-  "BlueWave Gaming Laptop": {
-    "name": "BlueWave Gaming Laptop",
-    "category": "Computers and Laptops",
+  "BW-GL200": {
     "brand": "BlueWave",
     "model_number": "BW-GL200",
     "warranty": "2 years",
@@ -21,9 +17,7 @@
     "description": "A high-performance gaming laptop for an immersive experience.",
     "price": 1199.99
   },
-  "SmartX ProPhone": {
-    "name": "SmartX ProPhone",
-    "category": "Smartphones and Accessories",
+  "SX-PP10": {
     "brand": "SmartX",
     "model_number": "SX-PP10",
     "warranty": "1 year",
@@ -32,9 +26,7 @@
     "description": "A powerful smartphone with advanced camera features.",
     "price": 899.99
   },
-  "FotoSnap DSLR Camera": {
-    "name": "FotoSnap DSLR Camera",
-    "category": "Cameras and Camcorders",
+  "FS-DSLR200": {
     "brand": "FotoSnap",
     "model_number": "FS-DSLR200",
     "warranty": "1 year",
@@ -43,9 +35,7 @@
     "description": "Capture stunning photos and videos with this versatile DSLR camera.",
     "price": 599.99
   },
-  "CineView 4K TV": {
-    "name": "CineView 4K TV",
-    "category": "Televisions and Home Theater Systems",
+  "CV-4K55": {
     "brand": "CineView",
     "model_number": "CV-4K55",
     "warranty": "2 years",

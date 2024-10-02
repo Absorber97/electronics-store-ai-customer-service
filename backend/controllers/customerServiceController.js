@@ -12,6 +12,8 @@ const productsData = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data
 const categoriesData = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/categories.json'), 'utf8'));
 const detailedDescriptions = JSON.parse(fs.readFileSync(path.join(__dirname, '../../data/detailed_descriptions.json'), 'utf8'));
 
+let currentProduct = null;
+
 function get_completion(prompt, model="gpt-3.5-turbo", temperature=0) {
   const messages = [{"role": "user", "content": prompt}];
   return openai.createChatCompletion({
@@ -21,21 +23,61 @@ function get_completion(prompt, model="gpt-3.5-turbo", temperature=0) {
   });
 }
 
+function getRandomProduct() {
+  const products = productsData.products;
+  return products[Math.floor(Math.random() * products.length)];
+}
+
+function getProductDetails(productId) {
+  const product = productsData.products.find(p => p.id === productId);
+  const details = detailedDescriptions[productId];
+  return { ...product, ...details };
+}
+
+exports.generateQuestion = async (req, res) => {
+  const { language, type } = req.query;
+  try {
+    let prompt;
+    if (type === "Change Product" || !currentProduct) {
+      currentProduct = getRandomProduct();
+    }
+    const productDetails = getProductDetails(currentProduct.id);
+    
+    if (type === "Change Product") {
+      prompt = `
+      You are a customer of an electronics store. Write a 100-word comment, question, or review about the following product in ${language}:
+      ${JSON.stringify(productDetails)}
+      `;
+    } else { // Change Comment Type
+      prompt = `
+      You are a customer of an electronics store. Write a 100-word ${getRandomCommentType()} about the following product in ${language}:
+      ${JSON.stringify(productDetails)}
+      `;
+    }
+    const response = await get_completion(prompt, "gpt-3.5-turbo", 0.7);
+    const question = response.data.choices[0].message.content.trim();
+    res.json({ question, productName: currentProduct.name });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'An error occurred while generating the question.' });
+  }
+};
+
+function getRandomCommentType() {
+  const types = ["positive review", "negative review", "neutral comment", "technical question", "comparison request"];
+  return types[Math.floor(Math.random() * types.length)];
+}
+
 exports.handleCustomerQuery = async (req, res) => {
   const { query, language } = req.body;
 
   try {
-    // Step 1: Generate customer's comment (simulating user input)
-    const commentPrompt = `
-    You are a customer of an electronics store. Based on the following product descriptions, write a 100-word comment or review about these products:
-    ${JSON.stringify(detailedDescriptions)}
-    `;
-    const commentResponse = await get_completion(commentPrompt);
-    const comment = commentResponse.data.choices[0].message.content.trim();
+    // Step 1: Use the provided query as the customer's comment
+    const comment = query;
 
     // Step 2: Generate email subject (using inferring technique)
     const subjectPrompt = `
-    What is the main topic of the following customer comment? Provide a short, concise email subject based on this topic.
+    What is the main topic of the following customer comment? Provide a short, concise email subject based on this topic in ${language}.
     Customer comment: ${comment}
     `;
     const subjectResponse = await get_completion(subjectPrompt);
@@ -43,7 +85,7 @@ exports.handleCustomerQuery = async (req, res) => {
 
     // Step 3: Generate summary of the customer's comment (using summarizing technique)
     const summaryPrompt = `
-    Summarize the following customer comment in at most 30 words:
+    Summarize the following customer comment in at most 30 words in ${language}:
     ${comment}
     `;
     const summaryResponse = await get_completion(summaryPrompt);
@@ -51,7 +93,7 @@ exports.handleCustomerQuery = async (req, res) => {
 
     // Step 4: Sentiment analysis of the customer's comment (using inferring technique)
     const sentimentPrompt = `
-    What is the sentiment of the following customer comment? Answer with only "positive" or "negative".
+    What is the sentiment of the following customer comment? Answer with only "positive" or "negative" in ${language}.
     Customer comment: ${comment}
     `;
     const sentimentResponse = await get_completion(sentimentPrompt);

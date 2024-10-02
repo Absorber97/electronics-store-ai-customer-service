@@ -1,34 +1,29 @@
 {
   "products": [
     {
+      "id": "TP-UB100",
       "name": "TechPro Ultrabook",
-      "category": "Computers and Laptops",
-      "price": 799.99,
-      "features": ["13.3-inch display", "8GB RAM", "256GB SSD", "Intel Core i5 processor"]
+      "category": "Computers and Laptops"
     },
     {
+      "id": "BW-GL200",
       "name": "BlueWave Gaming Laptop",
-      "category": "Computers and Laptops",
-      "price": 1199.99,
-      "features": ["15.6-inch display", "16GB RAM", "512GB SSD", "NVIDIA GeForce RTX 3060"]
+      "category": "Computers and Laptops"
     },
     {
+      "id": "SX-PP10",
       "name": "SmartX ProPhone",
-      "category": "Smartphones and Accessories",
-      "price": 899.99,
-      "features": ["6.1-inch display", "128GB storage", "12MP dual camera", "5G"]
+      "category": "Smartphones and Accessories"
     },
     {
+      "id": "FS-DSLR200",
       "name": "FotoSnap DSLR Camera",
-      "category": "Cameras and Camcorders",
-      "price": 599.99,
-      "features": ["24.2MP sensor", "1080p video", "3-inch LCD", "Interchangeable lenses"]
+      "category": "Cameras and Camcorders"
     },
     {
+      "id": "CV-4K55",
       "name": "CineView 4K TV",
-      "category": "Televisions and Home Theater Systems",
-      "price": 599.99,
-      "features": ["55-inch display", "4K resolution", "HDR", "Smart TV"]
+      "category": "Televisions and Home Theater Systems"
     }
   ]
 }

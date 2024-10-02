@@ -18,16 +18,11 @@ This is a customer service system for an electronics store, built with Node.js, 
    - Rename `.env.example` to `.env`
    - Add your OpenAI API key to the `.env` file
 
-4. Start the backend server:
+4. Run the application:
    ```
-   npm start
-   ```
-
-5. Run the Streamlit app:
-   ```
-   streamlit run frontend/streamlit_app.py
+   npm run app
    ```
 
 ## Usage
 
-Open your web browser and navigate to the URL provided by Streamlit to use the customer service interface.
+After running the application, open your web browser and navigate to the URL provided by Streamlit to use the customer service interface.
