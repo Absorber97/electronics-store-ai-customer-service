@@ -20,8 +20,8 @@ This project implements an AI-powered customer service system for an electronics
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/electronics-store-customer-service.git
-   cd electronics-store-customer-service
+   git clone https://github.com/Absorber97/electronics-store-ai-customer-service.git
+   cd electronics-store-ai-customer-service
    ```
 
 2. Install Node.js dependencies:
@@ -63,7 +63,7 @@ This will start the Node.js server and launch the Streamlit app in your default 
 ## Project Structure
 
 ```
-electronics-store-customer-service/
+electronics-store-ai-customer-service/
 ├── backend/
 │   ├── config/
 │   ├── controllers/
