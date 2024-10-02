@@ -4,6 +4,11 @@ This project implements an AI-powered customer service system for an electronics
 
 ![Electronic Store AI Customer Service](assets/Electronic%20Store%20AI%20Customer%20Service.png)
 
+## Additional Documents
+
+- Presentation (Google Slides): https://docs.google.com/presentation/d/1MBT9gS7CGHb_kE3_zIycc0-5G9GPJ4gKiujZtLXwSn8/edit?usp=drive_link
+- Presentation (PDF): https://drive.google.com/file/d/1RmnBZghGMEDLu9fDZnU5VlfmYBA0_z_7/view?usp=drive_link
+
 ## Features
 
 - Generate random customer queries about electronics products
